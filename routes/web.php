@@ -24,9 +24,27 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::middleware(['auth', 'verified'])->group(function () {
 
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
 
-require __DIR__.'/auth.php';
+    Route::get('/tours', function () {
+        return Inertia::render('Tours');
+    })->name('tours');
+
+    Route::get('/nosotros', function () {
+        return Inertia::render('About');
+    })->name('nosotros');
+
+    Route::get('/carrito', function () {
+        return Inertia::render('Cart');
+    })->name('carrito');
+
+    Route::get('/notificaciones', function () {
+        return Inertia::render('Notifications');
+    })->name('memes');
+});
+
+require __DIR__ . '/auth.php';

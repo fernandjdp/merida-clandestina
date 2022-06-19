@@ -1,5 +1,6 @@
 <script setup>
 import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
+import TourCard from '@/Components/TourCard.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 </script>
 
@@ -9,7 +10,7 @@ import { Head } from '@inertiajs/inertia-vue3';
     <BreezeAuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Conoce
+                Tours
             </h2>
         </template>
 
@@ -17,10 +18,18 @@ import { Head } from '@inertiajs/inertia-vue3';
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        You're logged in!
+                        Estás en los tours
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">   
+            <TourCard></TourCard>
+            <TourCard></TourCard>
+            <TourCard></TourCard>
+            <TourCard></TourCard>
+            <TourCard></TourCard>
+            <TourCard></TourCard>
         </div>
     </BreezeAuthenticatedLayout>
 </template>
