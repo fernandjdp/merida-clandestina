@@ -24,6 +24,12 @@ Route::get('/', function () {
     ]);
 });
 
+Route::middleware(['admin'])->group(function () {
+    Route::get('/admin-dashboard', function () {
+        return Inertia::render('AdminDashboard');
+    })->name('admin-dashboard');
+});
+
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
