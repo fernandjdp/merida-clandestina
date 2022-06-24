@@ -1,5 +1,6 @@
 <script setup>
 import BreezeAdminAuthenticatedLayout from '@/Layouts/Admin.vue';
+import Datatable from "@/Components/Datatable.vue";
 import TourCard from '@/Components/TourCard.vue';
 import { Head } from '@inertiajs/inertia-vue3';
 </script>
@@ -23,13 +24,41 @@ import { Head } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
         </div>
-        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-5">   
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
+
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    <Datatable></Datatable>
+                </div>
+            </div>
         </div>
+        
     </BreezeAdminAuthenticatedLayout>
 </template>
+<script>
+
+export default {
+
+    data(){
+        return {
+            products: [
+                {'code':'1', 'name':'memes1', 'link':'link1'},
+                {'code':'2', 'name':'memes2', 'link':'link2'},
+                {'code':'3', 'name':'memes3', 'link':'link3'},
+            ]
+        };
+    },
+    methods: {
+        onEditRecord($event) {
+
+        },
+        onDeleteRecord($event) {
+
+        },
+        onNewRecord($event) {
+
+        },
+    },
+};
+</script>
