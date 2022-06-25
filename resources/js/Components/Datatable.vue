@@ -1,35 +1,33 @@
-<script setup>
-import { onMounted, ref } from 'vue';
+<script>
+import { PencilIcon, TrashIcon } from "@heroicons/vue/outline";
 
-defineProps(['modelValue']);
+export default {
+    components: { PencilIcon, TrashIcon },
+    props: {
+        items: {
+            type: Array,
+            required: true
+        },
+        columns: {
+            type: Array,
+            required: true
+        },
+    },
+    data() {
+        return {
 
-defineEmits(['update:modelValue']);
-
-const input = ref(null);
-
-onMounted(() => {
-    if (input.value.hasAttribute('autofocus')) {
-        input.value.focus();
+        }
     }
-});
+}
 </script>
 
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-lg sm:rounded-lg">
         <table class="w-full text-sm text-left text-gray-500">
-            <thead class="text-xs  text-gray-700 uppercase bg-gray-50">
+            <thead class="text-xs  text-gray-700 uppercase bg-slate-300">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
-                        Product name
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Color
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Category
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        Price
+                    <th v-for="column in columns" :key="column.id" scope="col" class="px-6 py-3">
+                        {{ column.name }}
                     </th>
                     <th scope="col" class="px-6 py-3">
                         <span class="sr-only">Edit</span>
@@ -37,55 +35,17 @@ onMounted(() => {
                 </tr>
             </thead>
             <tbody>
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium  text-gray-900 whitespace-nowrap">
-                        Apple MacBook Pro 17"
+                <tr v-for="item in items" :key="item.id" class="bg-white border-b hover:bg-gray-50">
+                    <th v-for="column in columns" :key="column.id" scope="row" class="px-6 py-4 font-medium  text-gray-900 whitespace-nowrap">
+                        {{ item[column.reference] }}
                     </th>
-                    <td class="px-6 py-4">
-                        Sliver
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop
-                    </td>
-                    <td class="px-6 py-4">
-                        $2999
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        Microsoft Surface Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4">
-                        Laptop PC
-                    </td>
-                    <td class="px-6 py-4">
-                        $1999
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4">
-                        Accessories
-                    </td>
-                    <td class="px-6 py-4">
-                        $99
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-blue-600 hover:underline">Edit</a>
+                    <td class="px-6 py-4 text-center">
+                        <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                            <PencilIcon class="w-4 h-4"></PencilIcon>
+                        </button>
+                        <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                            <TrashIcon class="w-4 h-4"></TrashIcon>
+                        </button>
                     </td>
                 </tr>
             </tbody>
