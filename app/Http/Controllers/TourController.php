@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use App\Models\Tour;
+use App\Http\Interfaces\TourRepositoryInterface;
 
 class TourController extends Controller
 {
+    public function __construct(TourRepositoryInterface $tourRepository) 
+    {
+        $this->tourRepository = $tourRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,7 @@ class TourController extends Controller
      */
     public function index()
     {
-        //
+        return $this->tourRepository->getAllTours();
     }
 
     /**
@@ -25,7 +31,7 @@ class TourController extends Controller
      */
     public function create()
     {
-        //
+        dd("MEMES_CREADORS");
     }
 
     /**
@@ -58,7 +64,7 @@ class TourController extends Controller
      */
     public function edit(Tour $tour)
     {
-        //
+        dd("MEMES_EDITORS", $tour);
     }
 
     /**
