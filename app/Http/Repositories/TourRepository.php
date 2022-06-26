@@ -13,7 +13,7 @@ class TourRepository implements TourRepositoryInterface
     public function getAllTours() 
     {
         if (Auth::guard('admin')->check()) {
-            return Inertia::render('Admin/Tours', [
+            return Inertia::render('Admin/Tours/Index', [
                 'items' => Tour::all()->toArray(),
                 'create_url' => URL::route('admin.tours.create'),
             ]);
@@ -32,9 +32,17 @@ class TourRepository implements TourRepositoryInterface
         Tour::destroy($tourId);
     }
 
-    public function createTour(array $tourData) 
+    public function storeTour(array $tourData) 
     {
-        return Tour::create($tourData);
+        Tour::create($tourData);
+    }
+
+    public function getTourCreatePage() 
+    {
+        return Inertia::render('Admin/Tours/Create', [
+            'index_url' => URL::route('admin.tours'),
+            'store_url' => URL::route('admin.tours.store'),
+        ]);
     }
 
     public function updateTour($tourId, array $newData) 

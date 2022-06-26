@@ -7,6 +7,7 @@ interface TourRepositoryInterface
     public function getAllTours();
     public function getTourById($tourId);
     public function deleteTour($tourId);
-    public function createTour(array $tourData);
+    public function storeTour(array $tourData);
+    public function getTourCreatePage();
     public function updateTour($tourId, array $newData);
 }

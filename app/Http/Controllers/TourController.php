@@ -31,7 +31,7 @@ class TourController extends Controller
      */
     public function create()
     {
-        dd("MEMES_CREADORS");
+        return $this->tourRepository->getTourCreatePage();
     }
 
     /**
@@ -42,7 +42,8 @@ class TourController extends Controller
      */
     public function store(StoreTourRequest $request)
     {
-        //
+        $this->tourRepository->storeTour($request->validated());
+        return redirect()->route('admin.tours');
     }
 
     /**

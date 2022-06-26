@@ -53,6 +53,7 @@ import { Link } from '@inertiajs/inertia-vue3'
         },
         methods: {
             goToCreate() {
+                //console.log(route('admin.tours'))
                 this.$inertia.get(this.$attrs.create_url)
             }
         },
