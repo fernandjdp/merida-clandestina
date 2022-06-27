@@ -27,9 +27,10 @@ class TourRepository implements TourRepositoryInterface
         return Tour::findOrFail($tourId);
     }
 
-    public function deleteTour($tourId) 
+    public function deleteTour($tour) 
     {
-        Tour::destroy($tourId);
+        $tour->delete();
+        return $this->getAllTours();
     }
 
     public function storeTour(array $tourData) 
@@ -39,7 +40,7 @@ class TourRepository implements TourRepositoryInterface
 
     public function getTourCreatePage() 
     {
-        return Inertia::render('Admin/Tours/Create', [
+        return Inertia::render('Admin/Tours/CreateUpdate', [
             'index_url' => URL::route('admin.tours'),
             'store_url' => URL::route('admin.tours.store'),
         ]);

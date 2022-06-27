@@ -88,6 +88,6 @@ class TourController extends Controller
      */
     public function destroy(Tour $tour)
     {
-        //
+        return $this->tourRepository->deleteTour($tour);
     }
 }
