@@ -49,11 +49,11 @@ import { Link } from '@inertiajs/inertia-vue3'
         data(){
             return {
                 columns: [
-                    {'name': 'Nombre', 'reference':'name'},
-                    {'name':'Descripcion', 'reference':'description'},
-                    {'name':'Duracion', 'reference':'duration'},
-                    {'name':'Coste', 'reference':'cost'}
-                ]
+                    { name: "Nombre", reference: "name" },
+                    { name: "Descripcion", reference: "description" },
+                    { name: "Duracion", reference: "duration" },
+                    { name: "Coste", reference: "cost" },
+                ],
             };
         },
         methods: {
