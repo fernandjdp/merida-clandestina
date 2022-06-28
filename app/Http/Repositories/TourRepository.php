@@ -3,6 +3,7 @@
 namespace App\Http\Repositories;
 
 use App\Http\Interfaces\TourRepositoryInterface;
+use App\Http\Interfaces\ImageRepositoryInterface;
 use App\Models\Tour;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,11 @@ use Illuminate\Support\Facades\URL;
 
 class TourRepository implements TourRepositoryInterface 
 {
+    public function __construct(ImageRepositoryInterface $imageRepository) 
+    {
+        $this->imageRepository = $imageRepository;
+    }
+
     public function getAllTours() 
     {
         if (Auth::guard('admin')->check()) {
@@ -35,7 +41,15 @@ class TourRepository implements TourRepositoryInterface
 
     public function storeTour(array $tourData) 
     {
-        Tour::create($tourData);
+        $tour = Tour::create($tourData);
+
+        $tourImageId = $this->uploadTourImages($tourData['images'], $tour)[0];
+
+        $tour->image_id = $tourImageId;
+
+        $tour->save();
+
+        return $tour;
     }
 
     public function getTourCreatePage() 
@@ -49,5 +63,14 @@ class TourRepository implements TourRepositoryInterface
     public function updateTour($tourId, array $newData) 
     {
         return Tour::whereId($tourId)->update($newData);
+    }
+
+    private function uploadTourImages($imageArray, $tourModel) {
+        $imagesArray = [];
+        foreach ($imageArray as $imageFile) {
+            $image = $this->imageRepository->storeImage($tourModel, $imageFile);
+            array_push($imagesArray, $image->id);
+        }
+        return $imagesArray;
     }
 }

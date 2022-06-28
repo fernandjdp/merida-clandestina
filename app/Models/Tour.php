@@ -14,5 +14,14 @@ class Tour extends Model
         'description',
         'duration',
         'cost',
+        'image_id'
     ];
+
+    public function image() {
+        $this->belongsTo(Image::class);
+    }
+
+    public function images() {
+        $this->hasMany(Image::class);
+    }
 }

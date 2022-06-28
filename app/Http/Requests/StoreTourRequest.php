@@ -27,7 +27,8 @@ class StoreTourRequest extends FormRequest
             'name' => 'required',
             'description' => 'required',
             'cost' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'images' => ''
         ];
     }
 }
