@@ -25,7 +25,9 @@ class TourRepository implements TourRepositoryInterface
             ]);
         }
 
-        return Inertia::render('Tours');
+        return Inertia::render('Tours', [
+            'tours' => Tour::query()->with('image')->get()
+        ]);
     }
 
     public function getTourById($tourId) 

@@ -18,10 +18,10 @@ class Tour extends Model
     ];
 
     public function image() {
-        $this->belongsTo(Image::class);
+        return $this->belongsTo(Image::class);
     }
 
     public function images() {
-        $this->hasMany(Image::class);
+        return $this->hasMany(Image::class);
     }
 }

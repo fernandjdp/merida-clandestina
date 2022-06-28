@@ -5,6 +5,7 @@ namespace App\Http\Repositories;
 use App\Http\Interfaces\ImageRepositoryInterface;
 use App\Models\Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
 
 class ImageRepository implements ImageRepositoryInterface 
@@ -32,6 +33,7 @@ class ImageRepository implements ImageRepositoryInterface
     }
 
     private function formatImageName($imageName) {
-        return $imageName.Carbon::now()->format('Y-m-d-h-i-s');
+        $modelNameSlug = Str::slug($imageName, '-');
+        return $modelNameSlug.Carbon::now()->format('Y-m-d-h-i-s');
     }
 }

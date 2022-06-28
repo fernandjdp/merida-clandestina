@@ -23,13 +23,29 @@ import { Head } from '@inertiajs/inertia-vue3';
                 </div>
             </div>
         </div>
-        <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-5">   
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
-            <TourCard></TourCard>
+        <div class="max-w-7xl mx-auto">
+            <div v-if="tours" class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-5">
+                <div v-for="tour in tours" :key="tour.id">
+                    <TourCard
+                    :imageSource="tour.image.src"
+                    :title="tour.name"
+                    :description="tour.description"
+                    :cost="tour.cost"
+                    :duration="tour.duration"
+                    >
+                    </TourCard>
+                </div>   
+            </div>
+            <div v-else>
+                <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <span class="font-medium">Vacio!</span> No hay tours disponibles en este momento.
+                </div>
+            </div>
         </div>
     </BreezeAuthenticatedLayout>
 </template>
+<script>
+export default {
+    props: ['tours'],
+}
+</script>

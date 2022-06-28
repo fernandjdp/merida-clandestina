@@ -56,7 +56,7 @@ export default {
             <tbody>
                 <tr v-for="item in items" :key="item.id" class="bg-white border-b hover:bg-gray-50">
                     <th v-for="column in columns" :key="column.id" scope="row" class="px-6 py-4 font-medium max-w-md text-gray-900 whitespace-nowrap">
-                        <button v-if="item[column.reference].length >= 245" @click="showLongText(item[column.reference])" type="button" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
+                        <button v-if="item[column.reference].length >= 85" @click="showLongText(item[column.reference])" type="button" class="text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center mr-2">
                             <EyeIcon class="w-4 h-4"></EyeIcon>
                         </button>
                         <div v-else>

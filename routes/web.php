@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TourController;
 use Inertia\Inertia;
 
 /*
@@ -24,11 +25,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [TourController::class, 'index'])->name('dashboard');
 
     Route::get('/tours', function () {
         return Inertia::render('Tours');
